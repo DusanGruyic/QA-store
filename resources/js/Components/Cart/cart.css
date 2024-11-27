@@ -1,0 +1,14 @@
+.sidebar {
+  position: absolute;
+  top: 60px;
+  right: -80vw;
+  height: 169%;
+  transition: right 0.5s ease-in-out;
+  background-color: #e5e7eb;
+  border-left-width: 2px;
+  border-left-color: rgb(199 210 254);
+}
+
+.sidebar.open {
+  right: 0;
+}

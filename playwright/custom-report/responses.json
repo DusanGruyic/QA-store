@@ -1,0 +1,1 @@
+"{\"payload\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"email\":\"johndoe@gmail.com\",\"phone_number\":\"+(387) 555-333\",\"country\":\"USA\",\"city\":\"Chicago\",\"postal_code\":336,\"street_and_number\":\"Main Street, 345B\"},\"resp\":{\"status\":\"Error\",\"errors\":{\"postal_code\":[\"The postal code field must not be lower than 4 and greater than 10 characters.\"]}}}"

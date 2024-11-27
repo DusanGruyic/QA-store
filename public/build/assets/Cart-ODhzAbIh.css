@@ -1,0 +1,1 @@
+.sidebar{position:absolute;top:60px;right:-80vw;height:169%;transition:right .5s ease-in-out;background-color:#e5e7eb;border-left-width:2px;border-left-color:#c7d2fe}.sidebar.open{right:0}
