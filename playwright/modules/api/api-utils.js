@@ -19,7 +19,7 @@ export const getHeaders = (token) => {
 };
 
 export const writeToFile = (path, content) => {
-     fs.writeFileSync(path, JSON.stringify(content));
+    fs.writeFileSync(path, JSON.stringify(content));
 };
 
 export const writePayLoadAndRespToFile = (path, response, payload = "") => {
@@ -43,9 +43,9 @@ export const getMethodNotSupportedMsg = (
 export const getRouteNotFoundMsg = (route, id = "") => {
     return `The route ${route}${id} could not be found.`;
 };
-export const getCustomerNotFoundMsg = ( id = "") =>{
+export const getCustomerNotFoundMsg = (id) => {
     return `No customer found with ID ${id} found`;
-}
+};
 export const generateRandomString = (length) => {
     let chars = "abcdefghijklmnopqrstuvwxyz";
     let result = "";
@@ -141,9 +141,10 @@ export const getAbsolutePath = (__filename, value, level = 2) => {
         return path.join(__dirname, "..", "..", ...destinationPath);
     } else if (level === 3) {
         return path.join(__dirname, "..", "..", "..", ...destinationPath);
-    } else throw new Error(
-        "This path is not set, implement aditional case into switch"
-    );
+    } else
+        throw new Error(
+            "This path is not set, implement aditional case into switch"
+        );
 };
 
 export const splitStringByUppercase = (string, join) => {
@@ -252,7 +253,7 @@ export const verifyRequest = async (
             request.url() === `${endpoint}` &&
             request.method() === method.toUpperCase()
         );
-    });;
+    });
     const response = await request.response();
 
     expect(await response.status()).toEqual(statusCodeToMatch);

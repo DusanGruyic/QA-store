@@ -161,7 +161,7 @@ export class ProductAPI extends BaseAPI {
         }
 
         await this.put({ url: url, payload: productPayload, authToken: token });
-        
+
         let responseStatusCode = this.getResponseStatusCode();
         expect.soft(responseStatusCode).toEqual(statusCodeToMatch);
 
@@ -180,16 +180,14 @@ export class ProductAPI extends BaseAPI {
     }
 
     async verifyErrorMessage(errorToMatch, fieldInTest = null) {
-        if (fieldInTest) {           
+        if (fieldInTest) {
             return expect(this.getResponseJSON().errors[fieldInTest]).toContain(
                 errorToMatch
             );
         }
-         this.getResponseJSON().error  
-           ? expect(this.getResponseJSON().error).toContain(errorToMatch)
-           : expect(this.getResponseJSON().message).toContain(errorToMatch); 
-
-        
+        this.getResponseJSON().error
+            ? expect(this.getResponseJSON().error).toContain(errorToMatch)
+            : expect(this.getResponseJSON().message).toContain(errorToMatch);
     }
 
     async verifyUpdateProduct({
@@ -215,9 +213,7 @@ export class ProductAPI extends BaseAPI {
     async verifyCreateProduct({ statusMessageToMatch, productPayload }) {
         expect.soft(this.getResponseJSON().status).toBe(statusMessageToMatch);
         for (const key in productPayload) {
-            expect(this.getResponseJSON().product.key).toBe(
-                productPayload.key
-            );
+            expect(this.getResponseJSON().product.key).toBe(productPayload.key);
         }
     }
 }

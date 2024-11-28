@@ -28,7 +28,7 @@ test.describe("Billing info tests", () => {
                 methodOverride: UNSUPPORTED_METHODS[method],
                 token: token,
                 statusCodeToMatch: STATUS.BAD_METHOD,
-                errorToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED
+                errorToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED,
             });
         });
     }
@@ -80,7 +80,7 @@ test.describe("Billing info tests", () => {
             token: token,
             customerId: 1000,
             statusCodeToMatch: STATUS.NOT_FOUND,
-            errorToMatch: utils.getRouteNotFoundMsg(API.BILLING_INFO(1000)),
+            errorToMatch: utils.getCustomerNotFoundMsg(1000),
         });
     });
 

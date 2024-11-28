@@ -47,8 +47,9 @@ export class BillingInfoApi extends BaseAPI {
                 errorToMatch
             );
         }
-
-        // expect(this.getResponseJSON().message).toContain(errorToMatch);
+        this.getResponseJSON().error
+            ? expect(this.getResponseJSON().error).toContain(errorToMatch)
+            : expect(this.getResponseJSON().message).toContain(errorToMatch);
     }
 
     async verifyGetResponse(customerId, status = RESPONSE_MESSAGES.SUCCESS) {
@@ -77,7 +78,6 @@ export class BillingInfoApi extends BaseAPI {
         }
 
         await this.put({ url, payload, authToken: token });
-        
 
         let responseStatusCode = this.getResponseStatusCode();
         expect(responseStatusCode).toEqual(statusCodeToMatch);

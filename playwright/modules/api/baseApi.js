@@ -48,7 +48,6 @@ export default class BaseAPI {
         });
 
         await this.setResponseJSON(await this.response.json());
-
         await this.setResponseStatusCode(await this.response.status());
     }
 
@@ -56,14 +55,11 @@ export default class BaseAPI {
         const apiContext = await request.newContext();
 
         this.response = await apiContext[METHODS.POST](url, {
-            
             headers: getHeaders(authToken),
             data: payload,
-            
         });
 
         await this.setResponseJSON(await this.response.json());
-
         await this.setResponseStatusCode(await this.response.status());
     }
 

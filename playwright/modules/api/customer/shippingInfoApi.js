@@ -48,11 +48,10 @@ export class ShippingInfoApi extends BaseAPI {
             );
         }
 
-        this.getResponseJSON().error 
+        this.getResponseJSON().error
             ? expect(this.getResponseJSON().error).toContain(errorToMatch)
             : expect(this.getResponseJSON().message).toContain(errorToMatch);
-
-}
+    }
 
     async verifyGetResponse(customerId, status = RESPONSE_MESSAGES.SUCCESS) {
         expect(this.getResponseJSON().status).toEqual(status);
@@ -105,7 +104,6 @@ export class ShippingInfoApi extends BaseAPI {
         for (const field in this.getResponseJSON().shipping_info) {
             expect(this.getResponseJSON().shipping_info.field).toEqual(
                 payload.field
-                
             );
         }
     }

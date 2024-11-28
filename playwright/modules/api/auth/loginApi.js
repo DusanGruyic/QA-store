@@ -27,9 +27,6 @@ export class LoginAPI extends BaseAPI {
         }
 
         const response = await this.post({ url, payload });
-
-        console.log('RESPONSE', response)
-
         let responseStatusCode = this.getResponseStatusCode();
         expect(responseStatusCode).toEqual(statusCodeToMatch);
 
