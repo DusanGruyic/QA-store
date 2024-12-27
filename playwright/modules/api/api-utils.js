@@ -13,7 +13,7 @@ export const getRandomInt = (min = null, max = 1000000000) => {
 
 export const getHeaders = (token) => {
     return {
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
         Accept: "application/json",
     };
 };
@@ -43,6 +43,7 @@ export const getMethodNotSupportedMsg = (
 export const getRouteNotFoundMsg = (route, id = "") => {
     return `The route ${route}${id} could not be found.`;
 };
+
 export const getCustomerNotFoundMsg = (id) => {
     return `No customer found with ID ${id} found`;
 };
@@ -61,11 +62,12 @@ export const getMustBeTypeMsg = (field) => {
         return `The ${underscoreToSpace(field)} field must be true or false.`;
     } else if (
         field === Object.keys(constants.SHIPPING_PAYLOAD)[6] ||
-        field === Object.keys(constants.BILLING_PAYLOAD)[3]
+        field === Object.keys(constants.BILLING_PAYLOAD)[3] ||
+        field === Object.keys(constants.CART_PAYLOAD)[6]
     ) {
         return `The ${underscoreToSpace(field)} field must be an integer.`;
     } else if (constants.NUM.includes(field)) {
-        return `The ${underscoreToSpace(field)} must be a number`;
+        return `The ${underscoreToSpace(field)} field must be a number`;
     }
 
     return `The ${underscoreToSpace(field)} field must be a string.`;

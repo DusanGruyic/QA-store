@@ -34,7 +34,7 @@ export class DashboardPage {
             .last();
         this.closeMessage = page.locator(".Toastify__close-button").last();
         this.cartButton = page
-            .locator(".inline-flex.rounded-md button")
+            .locator(".inline-flex.rounded-md.button")
             .first();
         this.disabledCartButton = "p-button p-component p-disabled";
         this.ratingStar = "[role='rating']";
@@ -150,7 +150,7 @@ export class DashboardPage {
             const productCart = product.locator(this.productCarts);
             if (await productCart.isDisabled()) {
                 // await this.page.hover(productCart);
-                await productCart.hover({force:true});
+                await productCart.hover({ force: true });
                 await this.page.waitForSelector(this.outOfStock);
                 await utils.isVisible(this.page.locator(this.outOfStock));
                 expect(await productCart).toHaveClass(this.disabledCartButton);
@@ -171,11 +171,12 @@ export class DashboardPage {
                 this.counter++;
                 await utils.verifyElementTextContent(
                     this.confirmationMessage,
-                    constants.PRODUCTS_MESSAGES.PRODUCT_ADDED_SUCCESSFULLY
+                    constants.CART_MESSAGES.PRODUCT_ADDED_SUCCESSFULLY
                 );
                 await utils.clickOnElement(this.closeMessage);
             }
         }
+
         expect(Number(await this.cartButton.textContent())).toEqual(
             this.counter
         );

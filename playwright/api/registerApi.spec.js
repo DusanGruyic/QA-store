@@ -8,7 +8,7 @@ import {
     BOOLEAN_VALUES,
     RESPONSE_MESSAGES,
     MAX_FIELD_LENGTH_255,
-} from "playwright/fixtures/constants";
+} from "../fixtures/constants";
 import utils from "playwright/modules/api/api-utils";
 
 let counter = 1;
@@ -22,8 +22,7 @@ test.describe("Register user", () => {
             await registerApi.register({
                 methodOverride: UNSUPPORTED_METHODS[method],
                 statusCodeToMatch: STATUS.BAD_METHOD,
-                errorToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED
-               
+                errorToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED,
             });
         });
     }
@@ -41,7 +40,6 @@ test.describe("Register user", () => {
         for (const field in REGISTER_PAYLOAD) {
             test(`${counter} Should not log in with ${utils.getNameOfValue(
                 FALSY_DATA[value]
-                
             )} as ${field}`, async ({ registerApi }) => {
                 await registerApi.register({
                     payload: {

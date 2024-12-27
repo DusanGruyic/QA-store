@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('quantity')->required()->default(0);
             $table->integer('cart_quantity')->required()->default(0);
             $table->string('category')->required()->default('other');
-            $table->float('rating');
+            $table->float('rating')->required();
             $table->timestamps();
         });
     }

@@ -43,7 +43,7 @@ test.describe("Visit navbar links", () => {
         await utils.navigateTo(navbar, NAVBAR_LINKS.DASHBOARD);
     });
 
-    test.skip("Should be redirected to home page on logout link click", async ({
+    test("Should be redirected to home page on logout link click", async ({
         navbar,
         registerPage,
     }) => {

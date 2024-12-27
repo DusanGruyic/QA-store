@@ -26,16 +26,17 @@ export class LoginAPI extends BaseAPI {
             ]);
         }
 
-        const response = await this.post({ url, payload });
+        await this.post({ url, payload });
+
         let responseStatusCode = this.getResponseStatusCode();
         expect(responseStatusCode).toEqual(statusCodeToMatch);
-
-        writeToFile(this.reportPath, JSON.stringify(this.getResponseJSON()));
 
         if (responseStatusCode !== STATUS.OK) {
             return this.verifyErrorMessage(errorToMatch, fieldInTest);
         }
         this.verifyAuthToken();
+
+        return this.getResponseJSON();
     }
 
     async verifyErrorMessage(errorToMatch, fieldInTest) {

@@ -62,6 +62,7 @@ class ProductController extends Controller
                 }
             ],
             'in_stock' => 'required|boolean',
+            'cart_quantity' => 'required|integer',
             'quantity' => [
                 'required',
                 function ($attribute, $value, $fail) use ($request) {
@@ -72,8 +73,9 @@ class ProductController extends Controller
                     if (!$request->in_stock && $value > 0) {
                         $fail(self::VALIDATION_MESSAGES['CANNOT_SET_QUANTITY']);
                     }
-                }
+                },
             ],
+            'rating' => 'required|numeric'
         ]);
 
         $product = Product::create([
@@ -81,6 +83,7 @@ class ProductController extends Controller
             'description'  => $request->description,
             'price' => $request->price,
             'in_stock' => $request->in_stock,
+            'cart_quantity' => $request->cart_quantity,
             'quantity' => $request->quantity,
             'rating' => $request->rating
         ]);
@@ -107,6 +110,21 @@ class ProductController extends Controller
             try {
                 $request->validate([
                     'name'  => 'required|unique:products|string|max:255',
+                    'cart_quantity' => 'required|integer',
+                    'rating' => 'required|numeric',
+                    'in_stock' => 'required|boolean',
+                    'quantity' => [
+                        'required',
+                        function ($attribute, $value, $fail) use ($request) {
+                            if (!is_int($value)) {
+                                $fail(self::wrongDatatype($attribute, self::DATATYPES['NUMBER']));
+                            }
+        
+                            if (!$request->in_stock && $value > 0) {
+                                $fail(self::VALIDATION_MESSAGES['CANNOT_SET_QUANTITY']);
+                            }
+                        },
+                    ]
                 ]);
             } catch (ValidationException $th) {
                 return response()->json([
@@ -134,6 +152,8 @@ class ProductController extends Controller
                         'boolean',
                         function ($value, $fail) use ($request) {
                             if ($value === true && $request->quantity < 1) {
+                                $fail(self::VALIDATION_MESSAGES['CANNOT_SET_STOCK']);
+                            } else if ($value === false && $request->quantity > 0) {
                                 $fail(self::VALIDATION_MESSAGES['CANNOT_SET_STOCK']);
                             }
                         },

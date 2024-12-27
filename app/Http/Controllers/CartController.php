@@ -77,6 +77,8 @@ class CartController extends Controller
 
         if ($product->quantity === 0) {
             $product->update(['in_stock' => false]);
+        } else {
+            $product->update(['quantity' =>  $product->quantity - 1]);
         }
 
         return response()->json([

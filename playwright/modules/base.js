@@ -12,6 +12,8 @@ import { RegisterPage } from "playwright/modules/pom/registerPage.js";
 import { ResetPasswordPage } from "./pom/resetPasswordPage.js";
 import { MailHog } from "./pom/mailHogPage.js";
 import { DashboardPage } from "./pom/dashboardPage.js";
+import { CartAPI } from "./api/cart/cartApi.js";
+import { CartWindow } from "./pom/cart.js";
 
 const testPages = baseTest.extend({
     wpage: [
@@ -20,7 +22,7 @@ const testPages = baseTest.extend({
             const context = await browser.newContext();
             const page = await context.newPage();
             await use(page);
-            await page.close();
+            // await page.close();
             await context.close();
             await browser.close();
         },
@@ -37,6 +39,9 @@ const testPages = baseTest.extend({
     },
     productsApi: async ({ wpage }, use) => {
         await use(new ProductAPI(wpage));
+    },
+    cartApi: async ({ wpage }, use) => {
+        await use(new CartAPI(wpage));
     },
     billingInfo: async ({ wpage }, use) => {
         await use(new BillingInfoApi(wpage));
@@ -64,6 +69,9 @@ const testPages = baseTest.extend({
     },
     dashboardPage: async ({ wpage }, use) => {
         await use(new DashboardPage(wpage));
+    },
+    cartWindow: async ({ wpage }, use) => {
+        await use(new CartWindow(wpage));
     },
 });
 export const test = testPages;

@@ -26,7 +26,7 @@ trait ValidationTrait
 
     protected function wrongDatatype($field, $type)
     {
-        return "The $field must be a $type";
+        return "The $field field must be a $type";
     }
 
     protected function routeNotFound($route)

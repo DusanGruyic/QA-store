@@ -34,7 +34,9 @@ export const RESPONSE_MESSAGES = {
     LOGIN_BAD_CREDENTIALS:
         "The email address or password you entered is invalid",
     LOGIN_INVALID_EMAIL: "The email field must be a valid email address.",
-    METHOD_NOT_ALLOWED: "Method Not Allowed"
+    METHOD_NOT_ALLOWED: "Method Not Allowed",
+    ERROR: "Error",
+    PRODUCT_OUT_OF_STOCK: "Sorry, this product is currently not in stock.",
 };
 
 export const MAX_FIELD_LENGTH_255 = 255;
@@ -100,21 +102,25 @@ export const PASSWORD = {
 };
 
 export const DASHBOARD_TEXTS = {
-    BUY_SOME : "Buy some stuff bruh",
-}
+    BUY_SOME: "Buy some stuff bruh",
+};
 
 export const DISCOUNTS = {
-    SIXTY_SEVEN : 0.67,
-}
+    SIXTY_SEVEN: 0.67,
+};
 
 export const SLIDE_PRICE_BAR = {
-    EIGHTHUNDRED_FOURTHY_SEVEN : 20,
-    FIVETOUSEND_EIGHTY_FIVE : 120,
-}
+    EIGHTHUNDRED_FOURTHY_SEVEN: 20,
+    FIVETOUSEND_EIGHTY_FIVE: 120,
+};
 
-export const PRODUCTS_MESSAGES = {
-    PRODUCT_ADDED_SUCCESSFULLY : "Product added to cart!",
-}
+export const CART_MESSAGES = {
+    PRODUCT_ADDED_SUCCESSFULLY: "Product successfully added to cart",
+    CART_DELETED_SUCCESSFULLY: "Cart deleted successfully.",
+    PRODUCT_REMOVED_SUCCESSFULLY: "Product removed from cart.",
+    QUANTITY_DECREASED: "Product quantity decreased.",
+    PRODUCT_ADDED_UI: "Product added successfully!",
+};
 
 export const NGROK_LINK_TEXT = "ngrok.com";
 
@@ -139,6 +145,6 @@ export default {
     DASHBOARD_TEXTS,
     DISCOUNTS,
     SLIDE_PRICE_BAR,
-    PRODUCTS_MESSAGES,
+    CART_MESSAGES,
     NGROK_LINK_TEXT,
 };

@@ -6,11 +6,14 @@ export class Navbar {
         this.registerNavLink = page.getByRole("link", { name: "Register" });
         this.loginNavLink = page.getByRole("link", { name: "Log in" });
         this.dashboardNavLink = page.locator(".text-m a").nth(1);
-        this.logoutNavLink = page.getByRole("button", { name: "Logout" });
+        this.hamburgerMenu = page
+            .locator(".inline-flex.border-transparent.text-sm")
+            .nth(1);
+        this.logoutNavLink = page.locator("button", { hasText: "Log Out" });
     }
 
     async getDashboardUrl() {
-        return (await this.dashboardNavLink.getAttribute("href"));
+        return await this.dashboardNavLink.getAttribute("href");
     }
 
     async goToHomePage() {
@@ -18,8 +21,16 @@ export class Navbar {
     }
 
     async goToDashboard(urlToVerify) {
-        await utils.visitUrl(this.page, this.page.context()._options.baseURL)
+        await utils.visitUrl(this.page, this.page.context()._options.baseURL);
         await utils.clickOnElement(this.dashboardNavLink);
-        await utils.verifyUrl(this.page,urlToVerify);
+        await utils.verifyUrl(this.page, urlToVerify);
+    }
+    async goToDashboardRedirect(urlToVerify) {
+        await utils.visitUrl(this.page, this.page.context()._options.baseURL);
+        const context = this.page.context();
+        const pagePromise = context.waitForEvent("page");
+        await utils.clickOnElement(this.dashboardNavLink);
+        const newPage = await pagePromise;
+        await utils.verifyUrl(newPage, urlToVerify);
     }
 }

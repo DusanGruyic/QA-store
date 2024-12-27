@@ -19,7 +19,7 @@ export {
     DASHBOARD_TEXTS,
     SLIDE_PRICE_BAR,
     DISCOUNTS,
-    PRODUCTS_MESSAGES,
+    CART_MESSAGES,
     NGROK_LINK_TEXT,
 } from "./global";
 
@@ -38,4 +38,5 @@ export {
     CUSTOMER_PAYLOAD,
     PRODUCT_PAYLOAD,
     BILLING_PAYLOAD,
+    CART_PAYLOAD
 } from "./payloadData";

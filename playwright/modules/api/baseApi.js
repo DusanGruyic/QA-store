@@ -37,6 +37,8 @@ export default class BaseAPI {
 
         await this.setResponseJSON(await this.response.json());
         await this.setResponseStatusCode(await this.response.status());
+
+        return this.getResponseJSON();
     }
 
     async put({ url, payload, authToken = this.authToken }) {
@@ -49,6 +51,8 @@ export default class BaseAPI {
 
         await this.setResponseJSON(await this.response.json());
         await this.setResponseStatusCode(await this.response.status());
+
+        return this.getResponseJSON();
     }
 
     async post({ url, payload, authToken = this.authToken }) {
@@ -61,6 +65,8 @@ export default class BaseAPI {
 
         await this.setResponseJSON(await this.response.json());
         await this.setResponseStatusCode(await this.response.status());
+
+        return this.getResponseJSON();
     }
 
     async patch({ url, payload, authToken = this.authToken }) {
@@ -73,6 +79,8 @@ export default class BaseAPI {
 
         await this.setResponseJSON(await this.response.json());
         await this.setResponseStatusCode(await this.response.status());
+
+        return this.getResponseJSON();
     }
 
     async delete({ url, authToken = this.authToken }) {
@@ -84,6 +92,8 @@ export default class BaseAPI {
 
         await this.setResponseJSON(await this.response.json());
         await this.setResponseStatusCode(await this.response.status());
+
+        return this.getResponseJSON();
     }
 
     // getters and setters ------------------------------------------------------------//
@@ -141,10 +151,8 @@ export default class BaseAPI {
     handleNotAllowedMethods(method, errorToMatch, supportedMethods) {
         for (const supported of supportedMethods) {
             if (method !== supported) {
-
                 expect(this.getResponseJSON().error).toContain(errorToMatch);
             }
-            
         }
     }
 }

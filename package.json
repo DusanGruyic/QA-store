@@ -11,7 +11,7 @@
         "test:playwright": "npm run migrate:seed && cd playwright && npx playwright install --with-deps && npx playwright test --retries=0",
         "test:api:local": "npm run migrate:seed && cd playwright && npx playwright install --with-deps && npx playwright test api --project local --retries=0",
         "test:api:prod": "npm run migrate:seed && cd playwright && npx playwright install --with-deps && npx playwright test api --project production --retries=0",
-        "test:e2e:local": "npm run migrate:seed && cd playwright && npx playwright install --with-deps && npx playwright test e2e --project local --retries=0",
+        "test:e2e:local": "npm run migrate:seed && cd playwright && npx playwright install --with-deps && npx playwright test e2e --project local --retries=0 --debug",
         "test:e2e:prod": "cd playwright &&  npx playwright install --with-deps && npx playwright test e2e --project production --retries=0",
         "playwright:install": "npx playwright install",
         "lint:fix": "npm run lint -- --fix ."

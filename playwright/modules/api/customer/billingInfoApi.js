@@ -8,7 +8,6 @@ import {
     RESPONSE_MESSAGES,
 } from "playwright/fixtures/constants";
 import * as utils from "../api-utils";
-import { log } from "node:console";
 
 export class BillingInfoApi extends BaseAPI {
     async getBillingInfo({

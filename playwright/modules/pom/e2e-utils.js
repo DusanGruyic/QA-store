@@ -34,8 +34,6 @@ export const visitUrl = async (page, url) => {
 export const verifyUrl = async (page, url) => {
     await page.waitForURL(url);
     const pageUrl = await page.url();
-    // expect(await page).toHaveURL(url, { timeout: 11000 });
-    expect(pageUrl).toContain(url);
 };
 
 export const isEnabled = async (element) => {

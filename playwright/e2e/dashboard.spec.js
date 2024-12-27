@@ -22,10 +22,10 @@ test.describe("Dashboard accessibility", () => {
     test("Shouldn't be allowed to access Dashboard if user isn't logged in", async ({
         navbar,
     }) => {
-        await navbar.goToDashboard(constants.URLS.LOGIN);
+        await navbar.goToDashboardRedirect(constants.URLS.LOGIN);
     });
 
-    test.skip("Should be allowed for API request to be resolved", async ({
+    test("Should be allowed for API request to be resolved", async ({
         loginPage,
         dashboardPage,
     }) => {
@@ -74,19 +74,19 @@ test.describe("Dashboard functionalities", () => {
         });
     });
 
-    test.skip("Should discount match old price decreased by 33%", async ({
+    test("Should discount match old price decreased by 33%", async ({
         dashboardPage,
     }) => {
         await dashboardPage.isDiscountCorrect();
     });
 
-    test.skip("Product cart button state should depend if product is in stock", async ({
+    test("Product cart button state should depend if product is in stock", async ({
         dashboardPage,
     }) => {
         await dashboardPage.isProductInStock();
     });
 
-    test.skip("Should be shown confirmation message after adding product in cart", async ({
+    test("Should be shown confirmation message after adding product in cart", async ({
         dashboardPage,
     }) => {
         await dashboardPage.paginateAndCheck(async () => {
@@ -120,7 +120,7 @@ test.describe("Dashboard functionalities", () => {
         await dashboardPage.checkIfSlidersResetAfterChangingPage();
     });
 
-    test.skip("Prices should be in valid filter bar range", async ({
+    test("Prices should be in valid filter bar range", async ({
         dashboardPage,
     }) => {
         await dashboardPage.setFilterPrices(

@@ -22,7 +22,8 @@ class Product extends Model
         'quantity',
         'rating',
         'cart_quantity',
-        'category'
+        'category',
+        'rating'
     ];
 
     public function productImage(): HasOne

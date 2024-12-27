@@ -12,14 +12,12 @@ test.describe("Positive test cases", () => {
         await loginPage.loginUser({});
     });
 
-    test.skip("should log out user and assert that token is deleted from window local storage", async ({
+    test("should log out user and assert that token is deleted from window local storage", async ({
         loginPage,
         landingPage,
     }) => {
         await loginPage.loginUser({});
-
         await landingPage.logoutUser();
-
         expect(await loginPage.getToken()).toBeFalsy();
     });
 

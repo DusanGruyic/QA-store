@@ -21,13 +21,13 @@ export const SHIPPING_PAYLOAD = {
 };
 
 export const CUSTOMER_PAYLOAD = {
-    username: process.env.TEST_CUSTOMER_USERNAME,
-    first_name: process.env.TEST_CUSTOMER_FIRST_NAME,
-    last_name: process.env.TEST_CUSTOMER_LAST_NAME,
-    date_of_birth: process.env.TEST_CUSTOMER_DATE_OF_BIRTH,
+    username: 'edyUsername',
+    first_name: 'Edy',
+    last_name: 'Torta',
+    date_of_birth: "2005-03-25",
 };
 
-export const PRODUCT_PAYLOAD = {
+export let PRODUCT_PAYLOAD = {
     name: `LG - ${Math.floor(Math.random() * 10000000)}`,
     description: "Monitor 27inch",
     price: 250,
@@ -35,6 +35,24 @@ export const PRODUCT_PAYLOAD = {
     quantity: 2,
     cart_quantity: 2,
     rating: 4.5,
+};
+
+export const CART_PAYLOAD = {
+    id: 1,
+    name: "NVIDIA GeForce RTX 3080 Ti",
+    description:
+        "High-end graphics card with Ampere architecture for smooth gaming at 4K resolution.",
+    price: 1199.99,
+    in_stock: false,
+    quantity: 10,
+    cart_quantity: 0,
+    category: "GPUs",
+    rating: 4.9,
+    product_image: {
+        id: 1,
+        product_id: 1444,
+        description: "NVIDIA GeForce RTX 3080 Ti front view",
+    },
 };
 
 export const BILLING_PAYLOAD = {
@@ -52,4 +70,5 @@ export default {
     SHIPPING_PAYLOAD,
     CUSTOMER_PAYLOAD,
     BILLING_PAYLOAD,
+    CART_PAYLOAD,
 };

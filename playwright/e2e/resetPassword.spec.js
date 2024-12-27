@@ -35,7 +35,7 @@ test.describe("Reseting forgoten password", () => {
         );
     });
 
-    test.skip("Shouldn't be able to use the same reset link twice", async ({
+    test("Shouldn't be able to use the same reset link twice", async ({
         resetPasswordPage,
         mailHogPage,
     }) => {
@@ -60,7 +60,7 @@ test.describe("Reseting forgoten password", () => {
         });
     });
 
-    test.skip("Shouldn't use another users reset link to reset password", async ({
+    test("Shouldn't use another users reset link to reset password", async ({
         resetPasswordPage,
         mailHogPage,
         registerApi,
@@ -86,7 +86,7 @@ test.describe("Reseting forgoten password", () => {
         });
     });
 
-    test.skip("Shouldn't login with old password after reseting it to new one", async ({
+    test("Shouldn't login with old password after reseting it to new one", async ({
         resetPasswordPage,
         mailHogPage,
         loginPage,
@@ -114,7 +114,7 @@ test.describe("Reseting forgoten password", () => {
         });
     });
 
-    test.skip("Shouldn't be able to reset password if the new one is white space", async ({
+    test("Shouldn't be able to reset password if the new one is white space", async ({
         resetPasswordPage,
         mailHogPage,
     }) => {
@@ -133,7 +133,7 @@ test.describe("Reseting forgoten password", () => {
     });
 
     // tets skipped because, currently there aren't expired emails
-    test.skip("Shouldn't reset pasword if reset link is expired", async ({
+    test("Shouldn't reset pasword if reset link is expired", async ({
         mailHogPage,
         resetPasswordPage,
     }) => {
@@ -145,7 +145,7 @@ test.describe("Reseting forgoten password", () => {
         });
     });
 
-    test.skip("Shouldn't be able to reset password if the new one has seven characters", async ({
+    test("Shouldn't be able to reset password if the new one has seven characters", async ({
         resetPasswordPage,
         mailHogPage,
     }) => {
@@ -163,7 +163,7 @@ test.describe("Reseting forgoten password", () => {
         });
     });
 
-    test.skip("Shouldn't be able to reset password if password confirmation doesn't match", async ({
+    test("Shouldn't be able to reset password if password confirmation doesn't match", async ({
         resetPasswordPage,
         mailHogPage,
     }) => {
@@ -182,7 +182,7 @@ test.describe("Reseting forgoten password", () => {
         });
     });
 
-    test.skip("Should be allowed to reset password to last password used", async ({
+    test("Should be allowed to reset password to last password used", async ({
         resetPasswordPage,
         mailHogPage,
     }) => {
@@ -211,7 +211,7 @@ test.describe("Reseting forgoten password", () => {
         });
     });
 
-    test.skip("Should reset password by clicking on button", async ({
+    test("Should reset password by clicking on button", async ({
         resetPasswordPage,
         mailHogPage,
         loginPage,
@@ -236,7 +236,7 @@ test.describe("Reseting forgoten password", () => {
         });
     });
 
-    test.skip("Should reset password with recovery link", async ({
+    test("Should reset password with recovery link", async ({
         resetPasswordPage,
         mailHogPage,
         loginPage,

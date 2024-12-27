@@ -99,6 +99,7 @@ export class ProductAPI extends BaseAPI {
         expect.soft(responseStatusCode).toEqual(statusCodeToMatch);
 
         let response = this.getResponseJSON();
+
         writeToFile(this.reportPath, response);
 
         if (successful) {
@@ -106,6 +107,8 @@ export class ProductAPI extends BaseAPI {
             return expect.soft(response.product.id).toBe(id);
         }
         this.verifyErrorMessage(statusMessageToMatch);
+
+        return response;
     }
 
     async deleteProduct({
@@ -177,17 +180,19 @@ export class ProductAPI extends BaseAPI {
                 valueChanged: valueChanged,
                 fieldInTest: fieldInTest,
             });
+
+        return response;
     }
 
     async verifyErrorMessage(errorToMatch, fieldInTest = null) {
         if (fieldInTest) {
-            return expect(this.getResponseJSON().errors[fieldInTest]).toContain(
+            return expect(this.getResponseJSON().errors[fieldInTest].toString()).toContain(
                 errorToMatch
             );
         }
         this.getResponseJSON().error
             ? expect(this.getResponseJSON().error).toContain(errorToMatch)
-            : expect(this.getResponseJSON().message).toContain(errorToMatch);
+            : expect(this.getResponseJSON().status || this.getResponseJSON().message).toContain(errorToMatch);
     }
 
     async verifyUpdateProduct({

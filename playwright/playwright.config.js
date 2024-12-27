@@ -30,7 +30,7 @@ export default defineConfig({
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
     // @ts-ignore
     reporter: [
-    //     ["./customReporter.js"],
+        //     ["./customReporter.js"],
         ["html", { outputFolder: "./playwright-report" }],
     ],
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -47,20 +47,24 @@ export default defineConfig({
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry",
+        viewport: {
+            width: 1920,
+            height: 1080,
+        },
     },
 
     /* Configure projects for major browsers */
     projects: [
         {
             name: "local",
-            use: { 
+            use: {
                 baseURL: "http://localhost:8000",
                 trace: "on-first-retry",
             },
         },
         {
             name: "production",
-            use: { 
+            use: {
                 baseURL: "https://455f-94-230-181-138.ngrok-free.app",
                 trace: "on-first-retry",
             },
@@ -69,10 +73,6 @@ export default defineConfig({
             name: "chromium",
             use: {
                 ...devices["Desktop Chrome"],
-                viewport: {
-                    width: 1920,
-                    height: 1080,
-                },
             },
         },
 

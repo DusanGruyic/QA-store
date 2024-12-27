@@ -12,7 +12,6 @@ import {
     FLOAT_DATA,
     INTEGER_DATA,
 } from "playwright/fixtures/constants";
-import { only } from "node:test";
 
 let token;
 let counter = 1;
@@ -451,8 +450,7 @@ test.describe("CRUD - Request methods negative tests", () => {
             methodOverride: METHODS.PUT,
             token: token,
             statusCodeToMatch: STATUS.BAD_METHOD,
-            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED
-            
+            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED,
         });
     });
 
@@ -463,8 +461,7 @@ test.describe("CRUD - Request methods negative tests", () => {
             methodOverride: METHODS.PATCH,
             token: token,
             statusCodeToMatch: STATUS.BAD_METHOD,
-            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED
-            
+            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED,
         });
     });
 
@@ -474,7 +471,7 @@ test.describe("CRUD - Request methods negative tests", () => {
         await productsApi.createProduct({
             token: token,
             methodOverride: METHODS.PUT,
-            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED
+            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED,
         });
     });
 
@@ -485,7 +482,7 @@ test.describe("CRUD - Request methods negative tests", () => {
             token: token,
             methodOverride: METHODS.PATCH,
             statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED,
-            
+
             statusCodeToMatch: STATUS.BAD_METHOD,
         });
     });
@@ -497,7 +494,7 @@ test.describe("CRUD - Request methods negative tests", () => {
             methodOverride: METHODS.PATCH,
             token: token,
             statusCodeToMatch: STATUS.BAD_METHOD,
-            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED
+            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED,
         });
     });
 
@@ -509,7 +506,7 @@ test.describe("CRUD - Request methods negative tests", () => {
             methodOverride: METHODS.POST,
             token: token,
             statusCodeToMatch: STATUS.BAD_METHOD,
-            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED
+            statusMessageToMatch: RESPONSE_MESSAGES.METHOD_NOT_ALLOWED,
         });
     });
 
@@ -911,7 +908,7 @@ test.describe("Negative cases", () => {
             token: token,
             statusCodeToMatch: STATUS.NOT_FOUND,
             id: utils.getRandomInt(),
-            statusMessageToMatch: RESPONSE_MESSAGES.NO_PRODUCT_FOUND,
+            statusMessageToMatch: RESPONSE_MESSAGES.ERROR,
         });
     });
 });

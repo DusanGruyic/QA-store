@@ -24,7 +24,8 @@ const apiVersion = "api/v1";
 const apiAuth = `${apiVersion}/auth`;
 const customersAPI = `${apiVersion}/customers`;
 const productsAPI = `${apiVersion}/products`;
-const productImagesAPI = `${apiVersion}/product-images`
+const productImagesAPI = `${apiVersion}/product-images`;
+const cartAPI = `${apiVersion}/cart`;
 
 export const ENDPOINTS = {
     LOGIN: `${apiAuth}/login`,
@@ -40,14 +41,15 @@ export const ENDPOINTS = {
     PRODUCT: (id) => `${productsAPI}/${id}`,
     PRODUCT_IMAGES: `${apiVersion}/product-images`,
     PRODUCT_IMAGE: (id) => `${productImagesAPI}/${id}`,
-    CART: (cartId) => `${apiVersion}/${cartId}`,
-    ADD_TO_CART: (cartId) => `${apiVersion}/${cartId}`,
+    CART: (cartId) => `${cartAPI}/${cartId}`,
+    ADD_TO_CART: (cartId, productId) =>
+        `${cartAPI}/${cartId}/products/${productId}`,
     REMOVE_FROM_CART: (cartId, productId) =>
-        `${apiVersion}/${cartId}/products/${productId}`,
+        `${cartAPI}/${cartId}/products/${productId}`,
 };
 
 export const URLS = {
-    DASHBOARD : "/dashboard",
+    DASHBOARD: "/dashboard",
     FORGOTEN_PASSWORD: "/forgot-password",
     RESET_PASSWORD: "/reset-password",
     MAIL_HOG: "http://localhost:8025/",
