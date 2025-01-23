@@ -5,24 +5,24 @@ import utils from "playwright/modules/api/api-utils";
 let newPage, newContext, testUser;
 
 test.describe("Reseting forgoten password", () => {
-    test.beforeEach(
-        "Delete all messages",
-        async ({ wpage, registerApi }) => {
-            newPage = wpage;
-            newContext = await newPage.context();
+    test.beforeEach("Delete all messages", async ({ wpage, registerApi }) => {
+        newPage = wpage;
+        newContext = await newPage.context();
 
-            testUser = utils.createFakeUser();
-            await registerApi.register({
-                payload: testUser,
-            });
-        }
-    );
+        testUser = utils.createFakeUser();
+        await registerApi.register({
+            payload: testUser,
+        });
+    });
 
     for (const data in constants.NUMERIC_AND_CHAR_VALUES) {
         test(`Shouldn't be  allowed to send recovery link with not supported email format - ${data}`, async ({
             resetPasswordPage,
         }) => {
-            await resetPasswordPage.forgotPassword(constants.NUMERIC_AND_CHAR_VALUES[data], constants.MESSAGES.NOT_SUPPORTED_EMAIL_FORMAT);
+            await resetPasswordPage.forgotPassword(
+                constants.NUMERIC_AND_CHAR_VALUES[data],
+                constants.MESSAGES.NOT_SUPPORTED_EMAIL_FORMAT
+            );
         });
     }
 
@@ -31,7 +31,7 @@ test.describe("Reseting forgoten password", () => {
     }) => {
         await resetPasswordPage.forgotPassword(
             utils.generateEmail(6),
-            constants.MESSAGES.USER_DOESNT_EXIST,
+            constants.MESSAGES.USER_DOESNT_EXIST
         );
     });
 
@@ -41,7 +41,7 @@ test.describe("Reseting forgoten password", () => {
     }) => {
         await resetPasswordPage.forgotPassword(
             testUser.email,
-            constants.MESSAGES.SUCCESSFUL,
+            constants.MESSAGES.SUCCESSFUL
         );
         await mailHogPage.findEmail(testUser.email);
         await mailHogPage.clickOnReset();
@@ -93,7 +93,7 @@ test.describe("Reseting forgoten password", () => {
     }) => {
         await resetPasswordPage.forgotPassword(
             testUser.email,
-            constants.MESSAGES.SUCCESSFUL,
+            constants.MESSAGES.SUCCESSFUL
         );
         await mailHogPage.findEmail(testUser.email);
         await mailHogPage.clickOnReset();
@@ -120,7 +120,7 @@ test.describe("Reseting forgoten password", () => {
     }) => {
         await resetPasswordPage.forgotPassword(
             testUser.email,
-            constants.MESSAGES.SUCCESSFUL,
+            constants.MESSAGES.SUCCESSFUL
         );
         await mailHogPage.findEmail(testUser.email);
         await mailHogPage.clickOnReset();
@@ -151,7 +151,7 @@ test.describe("Reseting forgoten password", () => {
     }) => {
         await resetPasswordPage.forgotPassword(
             testUser.email,
-            constants.MESSAGES.SUCCESSFUL,
+            constants.MESSAGES.SUCCESSFUL
         );
         await mailHogPage.findEmail(testUser.email);
         await mailHogPage.clickOnReset();
@@ -169,7 +169,7 @@ test.describe("Reseting forgoten password", () => {
     }) => {
         await resetPasswordPage.forgotPassword(
             testUser.email,
-            constants.MESSAGES.SUCCESSFUL,
+            constants.MESSAGES.SUCCESSFUL
         );
         await mailHogPage.findEmail(testUser.email);
         await mailHogPage.clickOnReset();
@@ -188,7 +188,8 @@ test.describe("Reseting forgoten password", () => {
     }) => {
         await resetPasswordPage.forgotPassword(
             testUser.email,
-            constants.MESSAGES.SUCCESSFUL);
+            constants.MESSAGES.SUCCESSFUL
+        );
         await mailHogPage.findEmail(testUser.email);
         await mailHogPage.clickOnReset();
         await resetPasswordPage.enterNewPassword({
@@ -199,7 +200,7 @@ test.describe("Reseting forgoten password", () => {
 
         await resetPasswordPage.forgotPassword(
             testUser.email,
-            constants.MESSAGES.SUCCESSFUL,
+            constants.MESSAGES.SUCCESSFUL
         );
         await mailHogPage.findEmail(testUser.email);
         await mailHogPage.clickOnReset();
@@ -218,7 +219,7 @@ test.describe("Reseting forgoten password", () => {
     }) => {
         await resetPasswordPage.forgotPassword(
             testUser.email,
-            constants.MESSAGES.SUCCESSFUL,
+            constants.MESSAGES.SUCCESSFUL
         );
         await mailHogPage.findEmail(testUser.email);
         await mailHogPage.clickOnReset();
@@ -243,7 +244,7 @@ test.describe("Reseting forgoten password", () => {
     }) => {
         await resetPasswordPage.forgotPassword(
             testUser.email,
-            constants.MESSAGES.SUCCESSFUL,
+            constants.MESSAGES.SUCCESSFUL
         );
         await mailHogPage.findEmail(testUser.email);
         await mailHogPage.clickOnReset(true);

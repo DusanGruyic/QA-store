@@ -1,12 +1,6 @@
-import { clearLocalStorage } from "playwright/modules/api/api-utils";
 import { test, expect } from "../modules/base";
-import { CartAPI } from "playwright/modules/api/cart/cartApi";
-
-// test.describe.configure({ mode: "serial" });
 
 test.describe("Cart functionalities", () => {
-    let cartApi;
-
     test.beforeEach(
         "Should make dashboard accessible when user is logged in",
         async ({ loginPage, navbar }) => {
@@ -15,25 +9,11 @@ test.describe("Cart functionalities", () => {
             await navbar.goToDashboard(url);
         }
     );
+    test.afterEach("Clear cart contents", async ({ wpage }) => {
+        await wpage.evaluate(() => window.localStorage.clear());
+        await wpage.evaluate(() => window.sessionStorage.clear());
+    });
 
-    test.afterEach(
-        "Cleanup after each test",
-        async ({ wpage, cartApi, loginPage, navbar }) => {
-            cartApi = new CartAPI();
-            await cartApi.clearCart({
-                cartId: 1,
-                url: "http://localhost:8000/api/v1/cart/1",
-                token: await wpage.evaluate(() =>
-                    localStorage.getItem("token")
-                ),
-            });
-            await clearLocalStorage({ page: wpage });
-            await wpage.reload();
-            await loginPage.loginUser({});
-            const url = await navbar.getDashboardUrl();
-            await navbar.goToDashboard(url);
-        }
-    );
     test("Should open cart when cart button is clicked", async ({
         cartWindow,
     }) => {
@@ -42,19 +22,21 @@ test.describe("Cart functionalities", () => {
         await cartWindow.verifyCartIsEmpty();
     });
 
-    test("Should be able to add product to cart", async ({ cartWindow }) => {
+    test.only("Should be able to add product to cart", async ({
+        cartWindow,
+    }) => {
         await cartWindow.addProductToCart();
         await cartWindow.openTheCart();
         await expect(cartWindow.cartWindow).toBeVisible();
         await cartWindow.verifyAddedProduct();
     });
 
-    test("Should correctly update item count when a product is added", async ({
+    test.only("Should correctly update item count when a product is added", async ({
         cartWindow,
     }) => {
-        await cartWindow.clearCart();
         const initialItemCount = await cartWindow.getItemCount();
         await cartWindow.addProductToCart();
+        await cartWindow.openTheCart();
         const updatedItemCount = await cartWindow.getItemCount();
         await expect(updatedItemCount).toBe(initialItemCount + 1);
     });

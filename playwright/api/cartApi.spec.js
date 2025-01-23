@@ -10,7 +10,6 @@ import {
 import { CART_PAYLOAD } from "playwright/fixtures/constants/payloadData";
 
 let token, userId;
-// test.describe.configure({ mode: "serial" });
 
 test.describe.configure({ mode: "serial" });
 test.beforeAll("Log into the app", async ({ loginApi }) => {
@@ -25,7 +24,7 @@ test.afterEach("Clear the cart", async ({ cartApi }) => {
         token: token,
     });
     response.cart.forEach((item) => {
-        cartApi.removeProductFromCart({
+        cartApi.clearCart({
             cartId: userId,
             token: token,
             productId: item.id,

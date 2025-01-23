@@ -9,7 +9,9 @@ export class Navbar {
         this.hamburgerMenu = page
             .locator(".inline-flex.border-transparent.text-sm")
             .nth(1);
-        this.logoutNavLink = page.locator("button", { hasText: "Log Out" });
+        this.logoutNavLink = page
+            .locator(".block.w-full.text-start.transition")
+            .nth(2);
     }
 
     async getDashboardUrl() {

@@ -37,7 +37,7 @@ export class CartWindow {
     }
 
     async openTheCart() {
-        await this.cartButton.hover();
+        // await this.cartButton.hover();
         await utils.clickOnElement(this.cartButton);
         await this.cartWindow.waitFor({ state: "visible" });
     }
